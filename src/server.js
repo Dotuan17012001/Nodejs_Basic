@@ -1,15 +1,16 @@
 import express from 'express'
 import configViewEngine from './configs/viewEngine';
+require('dotenv').config()
 const path = require('path')
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3000;
 configViewEngine(app)
 app.get('/', function(req, res){
    res.render('index.ejs')
 })
-app.get('/wowy', function(req, res){
-    res.send("IT Wowy???");
+app.get('/wow', function(req, res){
+    res.send("IT Wow???");
 })
 
 app.listen(port, () => {
