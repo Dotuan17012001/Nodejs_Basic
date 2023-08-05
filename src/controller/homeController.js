@@ -17,7 +17,7 @@ const getHomePage = (req,res) => {
 
           )})
           console.log('>>> check data inside', data)
-          return  res.render('index.ejs',{dataUser:JSON.stringify(data)})
+          return  res.render('index.ejs',{dataUser:data, test123:'DoVanTuan Test123'})
           // console.log('>>> check data2', JSON.stringify(data))
         }
       );
