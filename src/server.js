@@ -1,7 +1,7 @@
 import express from 'express'
 import configViewEngine from './configs/viewEngine';
 import initWebRoute from './routes/web'
-
+import connection from './configs/connectdb'
 
 require('dotenv').config()
 const path = require('path')
@@ -17,5 +17,5 @@ initWebRoute(app)
 
 
 app.listen(port, () => {
-    console.log(`server is running port:  http://localhost:${port}`);
+    console.log(`server is running port: http://localhost:${port}`);
 })
