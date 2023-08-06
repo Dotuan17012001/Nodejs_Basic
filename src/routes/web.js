@@ -12,6 +12,12 @@ const initWebRoute = (app) => {
     router.get('/detail/user/:userId', homeController.getDetailPage)
     
     router.post('/create-new-user', homeController.createNewUser)
+    
+    router.post('/delete-user', homeController.deleteUser)
+   
+    router.get('/edit-user/:id', homeController.getEditUser)
+
+    router.post('/update-user', homeController.postUpdateUser)
 
     router.get('/it', function(req, res){
         res.send("IT Wow???");
@@ -19,5 +25,4 @@ const initWebRoute = (app) => {
 
     return app.use('/',router)
 }
-
 export default initWebRoute;

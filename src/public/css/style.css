@@ -60,3 +60,18 @@ tr:hover {background-color: #D6EEEE;}
 .create-user-container label{
      display: block;
 }
+
+.custom-btn{
+  display: flex;
+  gap: 5px;
+}
+.form-update{
+  margin-top: 100px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.form-update label{
+  display: block;
+}
