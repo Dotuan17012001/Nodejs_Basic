@@ -1,34 +1,29 @@
-import connection from "../configs/connectdb"
-const getHomePage = (req,res) => {
-    //logic
-    let data = [];
-    connection.query(
-        'SELECT * FROM `users`',
-        function(err, results, fields) {
-           //console.log('check mysql',results); // results contains rows returned by server
-           results.map((row)=>{
-            data.push(
-            {id:row.id,
-             email:row.email,
-             address: row.address,
-             firstName:row.firstName,
-             lastName:row.lastName
-            }
+import mysql from "mysql2/promise";
+import pool from "../configs/connectdb"
 
-          )})
-          console.log('>>> check data inside', data)
-          return  res.render('index.ejs',{dataUser:data, test123:'DoVanTuan Test123'})
-          // console.log('>>> check data2', JSON.stringify(data))
-        }
-      );
-       
-   
+const getHomePage = async (req,res) => {
+    //logic
+    const [rows, fields] = await pool.execute('SELECT * FROM users')
+    let check = await pool.execute('SELECT * FROM users')
+   // console.log('check>>>',check)
+    return  res.render('index.ejs',{dataUser:rows, test123:'DoVanTuan Test123'})
+  
 }
+
+
+const getDetailPage = async (req,res) => {
+  //logic
+  let id = req.params.userId
+  const [user] = await pool.execute('SELECT * FROM users where id = ?',[id])
+ // console.log('check request param',user)
+  return res.send(JSON.stringify(user));
+}
+
 const getAboutPage = (req,res) => {
     //logic
     return  res.render('about.ejs')
 }
 
 module.exports = {
-    getHomePage, getAboutPage
+    getHomePage, getAboutPage, getDetailPage
 }
