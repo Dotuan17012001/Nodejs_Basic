@@ -1,13 +1,16 @@
 import express from 'express'
 import configViewEngine from './configs/viewEngine';
 import initWebRoute from './routes/web'
-import connection from './configs/connectdb'
 
 require('dotenv').config()
 const path = require('path')
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+// config post method, giup gui data tu client len server
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 //setup view engine
 configViewEngine(app)

@@ -51,3 +51,12 @@ th, td {
 }
 
 tr:hover {background-color: #D6EEEE;}
+.create-user-container{
+  margin:50px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.create-user-container label{
+     display: block;
+}

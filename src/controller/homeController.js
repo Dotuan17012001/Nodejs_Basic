@@ -1,4 +1,3 @@
-import mysql from "mysql2/promise";
 import pool from "../configs/connectdb"
 
 const getHomePage = async (req,res) => {
@@ -13,9 +12,10 @@ const getHomePage = async (req,res) => {
 
 const getDetailPage = async (req,res) => {
   //logic
+  //req.params tra ve object {userId:${id}}
   let id = req.params.userId
   const [user] = await pool.execute('SELECT * FROM users where id = ?',[id])
- // console.log('check request param',user)
+  //console.log('check request param',user)
   return res.send(JSON.stringify(user));
 }
 
@@ -24,6 +24,15 @@ const getAboutPage = (req,res) => {
     return  res.render('about.ejs')
 }
 
+const createNewUser = async(req,res) => {
+    //logic
+    console.log('check request',req.body)
+
+    let {firstName,lastName,email,address} = req.body
+    await pool.execute('insert into users(firstName,lastName,email,address) values (?,?,?,?)',[firstName, lastName, email, address])
+    return res.redirect('/')
+}
+
 module.exports = {
-    getHomePage, getAboutPage, getDetailPage
+    getHomePage, getAboutPage, getDetailPage, createNewUser
 }
